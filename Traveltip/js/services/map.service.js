@@ -1,8 +1,9 @@
 'use stri'
-
+import { locService } from './loc.service.js'
 export const mapService = {
     initMap,
-    panTo
+    panTo,
+    initMarkers
 }
 
 var gMap;
@@ -23,14 +24,19 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 onMapClick(event.latLng, gMap);
                 console.log('event', event)
             });
-
-
-
-
         })
 }
 
 
+function initMarkers() {
+    var places = locService.getPlaces()
+
+    if (places) {
+        places.map(place => {
+            locService.addMarker(place, gMap)
+        })
+    }
+}
 
 function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);

@@ -7,9 +7,10 @@ window.onMapClick = onMapClick;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
-window.onRemovePlace = onRemovePlace
-window.initMarkers = initMarkers
-// var gMap;
+window.onRemovePlace = onRemovePlace;
+window.onGoToPlace = onGoToPlace
+    // window.initMarkers = mapService.initMarkers
+    // var gMap;
 
 function onInit() {
     mapService.initMap()
@@ -18,7 +19,7 @@ function onInit() {
         })
         .catch(() => console.log('Error: cannot init map'));
 
-
+    mapService.initMarkers()
 
 }
 
@@ -56,8 +57,14 @@ function renderPlaces() {
         </tr>`
     })
     document.querySelector('.places-table').innerHTML = strHtml.join('')
+        // mapService.initMarkers()
 }
 
+function onGoToPlace(placeId) {
+    console.log('csacas', place)
+    var place = locService.getPlaceById(placeId)
+    onPanTo(place.lat, place.lng)
+}
 
 function getplaceName() {
     var placeName = prompt('Name the location')
@@ -84,25 +91,18 @@ function onGetUserPos() {
         })
 }
 
-function onPanTo() {
+function onPanTo(lat, lng) {
     console.log('Panning the Map');
-    mapService.panTo(35.6895, 139.6917);
+    mapService.panTo(lat, lng);
 }
 
 function onRemovePlace(placeId) {
     locService.removePlace(placeId)
-    // const marker = getMarkerById(placeId)
+    locService.removeMarker(placeId)
+
+    // const place = getPlaceById(placeId)
+    // marker = place.marker
     // marker.setMap(null)
     renderPlaces()
-    initMarkers()
-}
-
-function initMarkers() {
-    var places = getPlaces()
-    if (places) {
-        places.map(place => {
-            mapService.addMarker(place, gMap)
-        })
-    }
-    console.log(places);
+        // initMarkers() this call in the render func!
 }

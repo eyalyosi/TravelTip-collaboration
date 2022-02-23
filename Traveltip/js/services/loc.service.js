@@ -5,12 +5,17 @@ export const locService = {
     createPlace,
     getPlaces,
     removePlace,
+    addMarker,
+    removeMarker,
+    getPlaceById,
 }
 
 
 var STORAGE_KEY = 'places_db'
 var gPlaces = storService.loadFromStorage(STORAGE_KEY) || []
-var gId = gPlaces.length + 1
+var gId = gPlaces.length + 1;
+var gMarkers = {} // = createGMarkers()
+
 
 const locs = [
     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
@@ -37,16 +42,15 @@ function createPlace(location, map, placeName) {
     }
 
     addMarker(place, map)
-    console.log(place);
-
     gPlaces.push(place)
+
     storService.saveToStorage(STORAGE_KEY, gPlaces)
 
     // return
 }
 
-function addMarker(place,map) {
-    
+function addMarker(place, map) {
+
     var marker = new google.maps.Marker({
         position: {
             lat: place.lat,
@@ -56,7 +60,23 @@ function addMarker(place,map) {
         title: place.name
     });
 
-    return marker;
+    gMarkers[place.id] = marker
+        // gMarkers.push(marker)
+        // console.log('gMarkers', gMarkers)
+}
+
+function removeMarker(placeId) {
+    // const placeIdx = gPlaces.findIndex(place => placeId === place.id)
+    // gPlaces.splice(placeIdx, 1)
+    // storService.saveToStorage(STORAGE_KEY, gPlaces)
+
+    // gMarkers.pop()
+    var marker = gMarkers[placeId]
+    console.log('gMarkers', marker)
+
+    marker.setMap(null)
+        // gMarkers = {}
+
 }
 
 function getPlaces() {
@@ -67,5 +87,21 @@ function removePlace(placeId) {
 
     const placeIdx = gPlaces.findIndex(place => placeId === place.id)
     gPlaces.splice(placeIdx, 1)
+        // console.log('gPlaces', gPlaces)
     storService.saveToStorage(STORAGE_KEY, gPlaces)
+}
+
+
+
+function getMarkerById(placeId) { return gMarkers[placeId] }
+
+function getPlaceById(placeId) {
+    var place = null;
+    for (let i = 0; i < gPlaces.length; i++) {
+        if (gPlaces[i].id === placeId) {
+            place = gPlaces[i]
+            break;
+        }
+    }
+    return place;
 }
