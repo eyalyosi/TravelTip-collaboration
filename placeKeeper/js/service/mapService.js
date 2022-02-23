@@ -19,6 +19,7 @@ function initMap(lat, lng) {
     // This event listener calls addMarker() when the map is clicked.
     google.maps.event.addListener(map, "click", (event) => {
         onMapClick(event.latLng, map);
+        console.log('event', event)
     });
     // Add a marker at the center of the map.
 
@@ -61,7 +62,7 @@ function initMap(lat, lng) {
 
     renderPlace()
     initMarkers(map)
-    //change colors
+        //change colors
     setUserColors()
 }
 
@@ -74,9 +75,9 @@ function createPlace(location, map, placeName) {
         title: placeName
     }
     addMarker(place, map)
-    // if (!gPlaces) {
-    //     gPlaces = []
-    // }
+        // if (!gPlaces) {
+        //     gPlaces = []
+        // }
 
     gPlaces.push(place)
     saveToStorage(STORAGE_KEY, gPlaces)
