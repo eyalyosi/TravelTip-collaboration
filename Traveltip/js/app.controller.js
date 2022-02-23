@@ -36,7 +36,7 @@ function onMapClick(location, map) {
 
     locService.createPlace(location, map, placeName)
 
-    onAddMarker(location, placeName)
+    // mapService.addMarker(location, placeName)
     renderPlaces()
 }
 
@@ -58,11 +58,6 @@ function renderPlaces() {
     document.querySelector('.places-table').innerHTML = strHtml.join('')
 }
 
-function onAddMarker(location, placeName) {
-    mapService.addMarker(location, placeName);
-
-    // mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
-}
 
 function getplaceName() {
     var placeName = prompt('Name the location')

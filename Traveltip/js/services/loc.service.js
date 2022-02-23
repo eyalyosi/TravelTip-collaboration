@@ -35,10 +35,28 @@ function createPlace(location, map, placeName) {
         createdAt: new Date(),
         // updatedAt
     }
+
+    addMarker(place, map)
+    console.log(place);
+
     gPlaces.push(place)
     storService.saveToStorage(STORAGE_KEY, gPlaces)
 
     // return
+}
+
+function addMarker(place,map) {
+    
+    var marker = new google.maps.Marker({
+        position: {
+            lat: place.lat,
+            lng: place.lng
+        },
+        map,
+        title: place.name
+    });
+
+    return marker;
 }
 
 function getPlaces() {
