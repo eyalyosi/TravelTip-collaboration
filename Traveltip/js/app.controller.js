@@ -9,13 +9,14 @@ window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onRemovePlace = onRemovePlace;
 window.onGoToPlace = onGoToPlace
-    // window.initMarkers = mapService.initMarkers
-    // var gMap;
+window.onMyLocation = onMyLocation
+// window.initMarkers = mapService.initMarkers
+// var gMap;
 
 function onInit() {
     mapService.initMap()
         .then(() => {
-            console.log('Map is ready');
+            // console.log('Map is ready');
         })
         .catch(() => console.log('Error: cannot init map'));
 
@@ -23,13 +24,6 @@ function onInit() {
 
 }
 
-// This function provides a Promise API to the callback-based-api of getCurrentPosition
-function getPosition() {
-    console.log('Getting Pos');
-    return new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject)
-    })
-}
 
 function onMapClick(location, map) {
     const placeName = getplaceName()
@@ -37,7 +31,6 @@ function onMapClick(location, map) {
 
     locService.createPlace(location, map, placeName)
 
-    // mapService.addMarker(location, placeName)
     renderPlaces()
 }
 
@@ -57,11 +50,9 @@ function renderPlaces() {
         </tr>`
     })
     document.querySelector('.places-table').innerHTML = strHtml.join('')
-        // mapService.initMarkers()
 }
 
 function onGoToPlace(placeId) {
-    console.log('csacas', place)
     var place = locService.getPlaceById(placeId)
     onPanTo(place.lat, place.lng)
 }
@@ -69,6 +60,19 @@ function onGoToPlace(placeId) {
 function getplaceName() {
     var placeName = prompt('Name the location')
     return placeName
+}
+
+
+function onPanTo(lat, lng) {
+    // console.log('Panning the Map');
+    mapService.panTo(lat, lng);
+}
+
+function onRemovePlace(placeId) {
+    locService.removePlace(placeId)
+    locService.removeMarker(placeId)
+
+    renderPlaces()
 }
 
 function onGetLocs() {
@@ -83,26 +87,28 @@ function onGetUserPos() {
     getPosition()
         .then(pos => {
             console.log('User position is:', pos.coords);
-            document.querySelector('.user-pos').innerText =
-                `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
+            // document.querySelector('.user-pos').innerText =
+            //     `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
         })
         .catch(err => {
             console.log('err!!!', err);
         })
 }
 
-function onPanTo(lat, lng) {
-    console.log('Panning the Map');
-    mapService.panTo(lat, lng);
+// This function provides a Promise API to the callback-based-api of getCurrentPosition
+function getPosition() {
+    // console.log('Getting Pos');
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject)
+    })
 }
 
-function onRemovePlace(placeId) {
-    locService.removePlace(placeId)
-    locService.removeMarker(placeId)
+function onMyLocation() {
+    getPosition().then(mapService.goToMyLocation)
+}
 
-    // const place = getPlaceById(placeId)
-    // marker = place.marker
-    // marker.setMap(null)
-    renderPlaces()
-        // initMarkers() this call in the render func!
+
+function onSearch(value) {
+
+
 }
