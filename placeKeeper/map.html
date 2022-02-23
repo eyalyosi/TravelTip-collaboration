@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Keeper App</title>
+    <link rel="stylesheet" href="css/map.css">
+
+</head>
+
+<body onload="onInit()">
+
+    <h1>The Map</h1>
+
+    <div id="map"></div>
+
+    <!-- <h2>Current Position:</h2>
+    <table border="1">
+        <tr>
+            <td>Latitude</td>
+            <td id="latitude"></td>
+        </tr>
+        <tr>
+            <td>Longitude</td>
+            <td id="longitude"></td>
+        </tr>
+        <tr>
+            <td>Accuracy</td>
+            <td id="accuracy"></td>
+        </tr>
+        <tr>
+            <td>Timestamp</td>
+            <td id="timestamp"></td>
+        </tr>
+    </table> -->
+
+    <h2>My favorit location</h2>
+    <table>
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Lat</td>
+                <td>Lng</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody class="places-table">
+        </tbody>
+    </table>
+
+
+    <a href="user-settings.html">Your details here</a>
+    <a href="index.html">Home</a>
+
+
+    <script src="js/service/utilsService.js"></script>
+    <script src="js/service/storageServics.js"></script>
+    <script src="js/service/mapService.js"></script>
+    <script src="js/user-settings-controller.js"></script>
+    <script src="js/index-controller.js"></script>
+    <script src="js/map-controller.js"></script>
+
+    <!-- api key: AIzaSyAQnKKFJsINeqi0rYMtaBP2IQOoKeDZLdM -->
+
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQnKKFJsINeqi0rYMtaBP2IQOoKeDZLdM&callback=initMap">
+        </script>
+</body>
+
+</html>

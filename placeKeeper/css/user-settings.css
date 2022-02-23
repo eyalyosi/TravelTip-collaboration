@@ -1,0 +1,18 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    /* justify-content: center; */
+    text-align: center;
+    /* align-content: center; */
+    align-items: center;
+    gap: 10px;
+    border: 2px solid black;
+    padding: 10px;
+    margin: auto;
+}
+
+.set-button {
+    width: 20%;
+    /* align-items: center; */
+}
