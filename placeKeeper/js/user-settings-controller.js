@@ -29,11 +29,11 @@ function onSetForm(ev) {
 
 function setUserColors() {
     const userData = loadFromStorage(USER_DATA_STORAGE_KEY)
-var textColor = userData.textColor
-var bgColor = userData.backgroundColor
+// var textColor = userData.textColor
+// var bgColor = userData.backgroundColor
 
-document.body.style.backgroundColor = bgColor;
-document.body.style.color = textColor
+// document.body.style.backgroundColor = bgColor;
+// document.body.style.color = textColor
 
 }
 
