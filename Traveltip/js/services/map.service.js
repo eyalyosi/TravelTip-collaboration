@@ -29,14 +29,9 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
 
 
         })
-
-
-
-
 }
 
 function addMarker(loc, placeName) {
-    console.log(placeName)
     var marker = new google.maps.Marker({
         position: loc,
         map: gMap,

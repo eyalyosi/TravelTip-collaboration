@@ -2,13 +2,15 @@ import { storService } from './storageServics.js'
 
 export const locService = {
     getLocs,
-    createPlace
+    createPlace,
+    getPlaces,
+    removePlace,
 }
 
-var gId = 1;
-var STORAGE_KEY = 'places_db'
-var gPlaces = storService.loadFromStorage(STORAGE_KEY);
 
+var STORAGE_KEY = 'places_db'
+var gPlaces = storService.loadFromStorage(STORAGE_KEY) || []
+var gId = gPlaces.length + 1
 
 const locs = [
     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
@@ -37,4 +39,15 @@ function createPlace(location, map, placeName) {
     storService.saveToStorage(STORAGE_KEY, gPlaces)
 
     // return
+}
+
+function getPlaces() {
+    return gPlaces
+}
+
+function removePlace(placeId) {
+
+    const placeIdx = gPlaces.findIndex(place => placeId === place.id)
+    gPlaces.splice(placeIdx, 1)
+    storService.saveToStorage(STORAGE_KEY, gPlaces)
 }

@@ -7,7 +7,8 @@ window.onMapClick = onMapClick;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
-
+window.onRemovePlace = onRemovePlace
+window.initMarkers = initMarkers
 // var gMap;
 
 function onInit() {
@@ -36,6 +37,25 @@ function onMapClick(location, map) {
     locService.createPlace(location, map, placeName)
 
     onAddMarker(location, placeName)
+    renderPlaces()
+}
+
+function renderPlaces() {
+    var places = locService.getPlaces()
+    var strHtml = places.map(place => {
+        return `
+        <tr>
+        <td>${place.id}</td>
+        <td>${place.name}</td>
+        <td>${place.lat}</td>
+        <td>${place.lng}</td>
+        <td>${place.createdAt}</td>
+        <td>place.updatedAt</td>
+        <td><button onclick="onGoToPlace(${place.id})">Go</button></td>
+        <td><button onclick="onRemovePlace(${place.id})">X</button></td>
+        </tr>`
+    })
+    document.querySelector('.places-table').innerHTML = strHtml.join('')
 }
 
 function onAddMarker(location, placeName) {
@@ -48,11 +68,6 @@ function getplaceName() {
     var placeName = prompt('Name the location')
     return placeName
 }
-
-
-
-
-
 
 function onGetLocs() {
     locService.getLocs()
@@ -77,4 +92,22 @@ function onGetUserPos() {
 function onPanTo() {
     console.log('Panning the Map');
     mapService.panTo(35.6895, 139.6917);
+}
+
+function onRemovePlace(placeId) {
+    locService.removePlace(placeId)
+    // const marker = getMarkerById(placeId)
+    // marker.setMap(null)
+    renderPlaces()
+    initMarkers()
+}
+
+function initMarkers() {
+    var places = getPlaces()
+    if (places) {
+        places.map(place => {
+            mapService.addMarker(place, gMap)
+        })
+    }
+    console.log(places);
 }
