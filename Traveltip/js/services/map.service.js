@@ -1,4 +1,4 @@
-
+'use stri'
 
 export const mapService = {
     initMap,
@@ -37,10 +37,9 @@ function panTo(lat, lng) {
 }
 
 
-
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = ''; //TODO: Enter your API Key
+    const API_KEY = 'AIzaSyB_a5738jFkyev1QtQ6i7tRuQEn38OAEn8';
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;
