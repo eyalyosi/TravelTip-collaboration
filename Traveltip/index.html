@@ -9,43 +9,54 @@
 </head>
 
 <body>
-    <header class="header main-layout">
-        <h1>TravelTip</h1>
-        <input type="text" name="" id="" onchange="onSearch(this.value)">
-        <button>Go</button>
-        <button onclick="onMyLocation()">My Location</button>
-    </header>
+    <div class="header-container">
+        <header class="header main-layout">
+            <h1>TravelTip</h1>
+            <div>
+                <input type="text" name="" id="" onchange="onSearch(this.value)">
+                <button>Go</button>
+                <button onclick="onMyLocation()">My Location</button>
+            </div>
+        </header>
+    </div>
 
-    <section class="main-content">
-        <p class="p-location">Location <span class="curr-location"></span></p> <button>Copy location</button>
-        <div id="map" style="width: 100%; height: 400px;"></div>
-        <!-- <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
+    <div class="main-content-container">
+        <section class="main-content main-layout">
+            <p class="p-location">Location <span class="curr-location"></span></p> <button>Copy location</button>
+            <div id="map" style="width: 100%; height: 400px;"></div>
+            <!-- <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
         <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
         <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
         <button onclick="onPanTo()" class="btn-pan">Pan Map to Tokyo</button> -->
-    </section>
+        </section>
+    </div>
 
-    <section>
-        <!-- <p>You are at: <span class="user-pos"></span></p>
+    <div class="location-table-container">
+        <section class="location-table main-layout">
+            <!-- <p>You are at: <span class="user-pos"></span></p>
         <p>Locations: <span class="locs"></span></p> -->
-        <h2>My favorit location</h2>
-        <table>
-            <thead>
-                <tr>
-                    <td>ID</td>
-                    <td>Name</td>
-                    <td>Lat</td>
-                    <td>Lng</td>
-                    <td>createdAt</td>
-                    <td>updatedAt</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </thead>
-            <tbody class="places-table">
-            </tbody>
-        </table>
-    </section>
+            <h2>My favorit location</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Name</td>
+                            <td>Lat</td>
+                            <td>Lng</td>
+                            <td>createdAt</td>
+                            <td>updatedAt</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody class="places-table">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
 
     <!-- AIzaSyB_a5738jFkyev1QtQ6i7tRuQEn38OAEn8 -->
 

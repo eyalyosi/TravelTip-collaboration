@@ -38,6 +38,7 @@ function renderPlaces() {
     var places = locService.getPlaces()
     var strHtml = places.map(place => {
         return `
+        
         <tr>
         <td>${place.id}</td>
         <td>${place.name}</td>

@@ -1,10 +1,47 @@
 * {
   box-sizing: border-box;
 }
-
+body {
+  margin: 0;
+}
 h1 {
   display: inline;
 }
+
+td {
+  border: 1px solid black;
+}
+
+.header-container {
+  background-color: lightblue;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  padding-left: 10px;
+  padding-right: 10px;
+  align-items: center;
+}
+
+.main-layout {
+  max-width: 95vw;
+  margin: 0 auto;
+}
+
 .p-location {
   display: inline;
+}
+.main-content-container {
+  background-color: lightcyan;
+  padding-bottom: 15px;
+}
+
+.location-table-container {
+  background-color: lightskyblue;
+  padding-bottom: 20px;
+}
+h2 {
+padding-top: 15px;
+ margin-top: 0; 
 }
